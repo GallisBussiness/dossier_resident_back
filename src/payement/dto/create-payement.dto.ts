@@ -1,0 +1,40 @@
+import { IsEnum, IsMongoId, IsNumber, IsString } from "class-validator";
+
+export enum PayementStatut {
+    PENDING = 'PENDING',
+    PAID = 'PAID',
+    CANCELED = 'CANCELED'
+}
+
+export enum Mois {
+    JANVIER = 'JANVIER',
+    FEBRER = 'FEVRIER',
+    MARS = 'MARS',
+    AVRIL = 'AVRIL',
+    MAI = 'MAI',
+    JUIN = 'JUIN',
+    JUILLET = 'JUILLET',
+    AOUT = 'AOUT',
+    SEPTEMBRE = 'SEPTEMBRE',
+    OCTOBRE = 'OCTOBRE',
+    NOVEMBRE = 'NOVEMBRE',
+    DECEMBRE = 'DECEMBRE'
+}
+
+export class CreatePayementDto {
+    @IsMongoId()
+    dossierId:string;
+
+    @IsNumber()
+    montant:number;
+
+    @IsEnum(Mois)
+    mois:Mois;
+
+    @IsString()
+    numero_facture:string;
+
+    @IsEnum(PayementStatut)
+    statut:PayementStatut;
+
+}
