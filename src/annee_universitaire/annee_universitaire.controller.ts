@@ -56,4 +56,11 @@ export class AnneeUniversitaireController {
   remove(@Param('id') id: string) {
     return this.anneeUniversitaireService.remove(id);
   }
+  
+  @Get('statistiques/:id')
+  @CheckAbility({ action: Action.Read, subject: AnneeUniversitaire })
+  @UseGuards(AuthGuard('jwt'), CaslGuard)
+  getStatistiquesByAnnee(@Param('id') id: string) {
+    return this.anneeUniversitaireService.getStatistiques(id);
+  }
 }

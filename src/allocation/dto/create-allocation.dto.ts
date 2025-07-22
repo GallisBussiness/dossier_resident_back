@@ -1,4 +1,4 @@
-import { IsDate, IsEnum, IsMongoId, IsNumber, IsOptional, IsString } from "class-validator";
+import {IsEnum, IsMongoId, IsNumber, IsOptional, IsString, IsDateString } from "class-validator";
 
 export enum AllocationStatut {
     NEUF = 'NEUF',
@@ -7,14 +7,14 @@ export enum AllocationStatut {
 
 export class CreateAllocationDto {
 
-    @IsDate()
-    date:Date;
+    @IsDateString()
+    date:string;
 
     @IsMongoId()
     dossierId:string;
 
-    @IsString()
-    nom:string;
+    @IsMongoId()
+    equipementId:string;
 
     @IsNumber()
     nombre:number;

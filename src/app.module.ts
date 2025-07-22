@@ -16,6 +16,8 @@ import { PavillonModule } from './pavillon/pavillon.module';
 import { ChambreModule } from './chambre/chambre.module';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { JwtModule } from '@nestjs/jwt';
+import { AllocationModule } from './allocation/allocation.module';
+import { EquipementModule } from './equipement/equipement.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -53,6 +55,8 @@ import { JwtModule } from '@nestjs/jwt';
     CampusModule,
     PavillonModule,
     ChambreModule,
+    AllocationModule,
+    EquipementModule,
   ],
   controllers: [AppController],
   providers: [AppService],

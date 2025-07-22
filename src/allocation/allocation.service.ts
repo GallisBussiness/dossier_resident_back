@@ -28,6 +28,14 @@ export class AllocationService {
     }
   }
 
+  async findAllByDossier(id:string):Promise<AllocationDocument[]> {
+    try {
+      return this.allocationModel.find({dossierId:id}).exec();
+    } catch (error) {
+      throw new HttpException('error getting allocation', 500);
+    }
+  }
+
   findOne(id: string) {
     try {
       return this.allocationModel.findById(id).exec();

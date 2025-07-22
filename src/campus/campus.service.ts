@@ -19,10 +19,38 @@ export class CampusService {
     }
   }
 
-  findAll() {
+  findAll():Promise<CampusDocument[]> {
       try {
-      return this.campusModel.find().exec();
+      return this.campusModel.find();
     } catch (error) {
+      throw new HttpException('error getting campuses', 500);
+    }
+  }
+
+  findWithPavillonsWithChambres():Promise<any[]> {
+    try {
+      return this.campusModel.aggregate([
+        {
+          $lookup:{
+            from:'pavillons',
+            localField:'_id',
+            foreignField:'campusId',
+            pipeline:[
+              {
+                $lookup:{
+                  from:'chambres',
+                  localField:'_id',
+                  foreignField:'pavillonId',
+                  as:'chambres'
+                }
+              }
+            ],
+            as:'pavillons'
+          }
+        }
+      ]);
+    } catch (error) {
+      console.log(error.message);
       throw new HttpException('error getting campuses', 500);
     }
   }

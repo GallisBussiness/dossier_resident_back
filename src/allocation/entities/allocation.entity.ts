@@ -2,6 +2,7 @@ import { Prop,Schema,SchemaFactory } from "@nestjs/mongoose";
 import { AllocationStatut } from "../dto/create-allocation.dto";
 import { Dossier } from "src/dossier/entities/dossier.entity";
 import { HydratedDocument,Schema as MongoSchema } from "mongoose";
+import { Equipement } from "src/equipement/entities/equipement.entity";
 
 export type AllocationDocument = HydratedDocument<Allocation>;
 
@@ -13,8 +14,8 @@ export class Allocation {
     @Prop({type:MongoSchema.Types.ObjectId,ref:Dossier.name,required:true})
     dossierId:string;
 
-    @Prop({type:String,required:true})
-    nom:string;
+    @Prop({type:MongoSchema.Types.ObjectId,ref:Equipement.name,required:true})
+    equipementId:string;
 
     @Prop({type:Number,required:true})
     nombre:number;

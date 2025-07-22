@@ -8,5 +8,6 @@ import { Campus, CampusSchema } from './entities/campus.entity';
   imports:[MongooseModule.forFeature([{name:'Campus',schema:CampusSchema}],"resident")],
   controllers: [CampusController],
   providers: [CampusService],
+  exports: [CampusService]
 })
 export class CampusModule {}

@@ -4,7 +4,7 @@ import { DossierController } from './dossier.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Dossier, DossierSchema } from './entities/dossier.entity';
 import { CaslModule } from 'src/casl/casl.module';
-
+import { EtudiantModule } from 'src/etudiant/etudiant.module';
 @Module({
   controllers: [DossierController],
   providers: [DossierService],
@@ -15,6 +15,7 @@ import { CaslModule } from 'src/casl/casl.module';
     return schema;
   }}],'resident'),
   CaslModule,
+  EtudiantModule
 ],
   exports:[DossierService]
 })

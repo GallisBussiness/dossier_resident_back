@@ -5,11 +5,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Dossier, DossierDocument } from './entities/dossier.entity';
 import { Model } from 'mongoose';
 import { HttpException } from '@nestjs/common';
+import { EtudiantService } from 'src/etudiant/etudiant.service';
 
 @Injectable()
 export class DossierService {
-    @InjectModel(Dossier.name,"resident")
-    private dossierModel: Model<DossierDocument>;
+ constructor(@InjectModel(Dossier.name,"resident") private dossierModel: Model<DossierDocument>,
+ private readonly etudiantService: EtudiantService){}
 
   create(createDossierDto: CreateDossierDto):Promise<DossierDocument> {
     try {
@@ -36,9 +37,24 @@ export class DossierService {
     }
   }
 
-  findAllByAnneeUniversitaire(id:string):Promise<DossierDocument[]> {
+  async findAllByAnneeUniversitaire(id:string):Promise<any[]> {
     try {
-      return this.dossierModel.find({anneeUniversitaireId:id}).exec();
+      const dossiers = await this.dossierModel.find({anneeUniversitaireId:id}).exec();
+      const etudiantsIds = dossiers.map((dossier:DossierDocument)=>{
+        return dossier.etudiantId;
+      });
+      const etudiants = await this.etudiantService.findAllByIds(etudiantsIds) ;
+      const result = [];
+      const r = dossiers;
+      r.forEach((d:any)=>{
+        result.push({
+          ...d._doc,
+          etudiant: etudiants.find((etudiant:any)=>{
+            return etudiant._doc.ncs === d._doc.etudiantId
+          })
+        })
+      })
+      return result;
     } catch (error) {
       throw new HttpException('error getting dossier', 500);
     }

@@ -92,4 +92,12 @@ export class EtudiantService {
       throw new HttpException(error.message, 500);
     }
   }
+
+  async findAllByIds(ids:string[]): Promise<Etudiant[]> {
+    try {
+      return await this.etudiantModel.find({ncs:{$in:ids}});
+    } catch (error) {
+      throw new HttpException(error.message, 500);
+    }
+  }
 }

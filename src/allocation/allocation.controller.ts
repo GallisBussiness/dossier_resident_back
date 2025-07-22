@@ -17,6 +17,11 @@ export class AllocationController {
     return this.allocationService.findAll();
   }
 
+  @Get("byDossier/:id")
+  findAllByDossier(@Param('id') id: string) {
+    return this.allocationService.findAllByDossier(id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.allocationService.findOne(id);
