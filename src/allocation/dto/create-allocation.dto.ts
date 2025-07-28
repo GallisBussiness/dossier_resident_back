@@ -1,9 +1,4 @@
-import {IsEnum, IsMongoId, IsNumber, IsOptional, IsString, IsDateString } from "class-validator";
-
-export enum AllocationStatut {
-    NEUF = 'NEUF',
-    DETERIORE = 'DETERIORE',
-}
+import {IsMongoId, IsNumber, IsOptional, IsString, IsDateString } from "class-validator";
 
 export class CreateAllocationDto {
 
@@ -25,6 +20,6 @@ export class CreateAllocationDto {
 
 
     @IsOptional()
-    @IsEnum(AllocationStatut)
-    etat:AllocationStatut;
+    @IsString()
+    constatation:string;
 }

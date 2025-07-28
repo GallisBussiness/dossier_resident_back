@@ -5,7 +5,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Allocation, AllocationSchema } from './entities/allocation.entity';
 
 @Module({
-  imports:[MongooseModule.forFeature([{name:Allocation.name,schema:AllocationSchema}],'resident')], 
+  imports:[MongooseModule.forFeatureAsync([{name:Allocation.name,useFactory:()=> {
+    const schema = AllocationSchema;
+    schema.plugin(require('mongoose-autopopulate'));
+    return schema;
+  }}],'resident')], 
   controllers: [AllocationController],
   providers: [AllocationService],
   exports:[AllocationService]

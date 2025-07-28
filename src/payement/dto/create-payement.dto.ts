@@ -1,10 +1,5 @@
 import { IsEnum, IsMongoId, IsNumber, IsString } from "class-validator";
 
-export enum PayementStatut {
-    PENDING = 'PENDING',
-    PAID = 'PAID',
-    CANCELED = 'CANCELED'
-}
 
 export enum Mois {
     JANVIER = 'JANVIER',
@@ -33,8 +28,5 @@ export class CreatePayementDto {
 
     @IsString()
     numero_facture:string;
-
-    @IsEnum(PayementStatut)
-    statut:PayementStatut;
 
 }

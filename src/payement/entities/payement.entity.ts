@@ -1,7 +1,6 @@
 import { Prop,Schema,SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument,Schema as MongoSchema } from "mongoose";
 import { Dossier } from "src/dossier/entities/dossier.entity";
-import { PayementStatut } from "../dto/create-payement.dto";
 import { Mois } from "../dto/create-payement.dto";
 
 export type PayementDocument = HydratedDocument<Payement>;
@@ -17,11 +16,8 @@ export class Payement {
     @Prop({type:String,enum:Mois,required:true})
     mois:Mois;
 
-    @Prop({type:String,required:true})
+    @Prop({type:String, unique:true,required:true})
     numero_facture:string;
-
-    @Prop({type:String,enum:PayementStatut,required:true,default:PayementStatut.PENDING})
-    statut:PayementStatut;
 }
 
 export const PayementSchema = SchemaFactory.createForClass(Payement);

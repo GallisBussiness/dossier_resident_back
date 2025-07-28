@@ -1,8 +1,7 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 export class CreateEquipementDto {
     @IsString()
-    @IsNotEmpty()
     nom:string;
 
     @IsString()

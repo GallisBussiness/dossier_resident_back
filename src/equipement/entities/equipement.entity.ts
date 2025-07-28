@@ -7,7 +7,7 @@ export type EquipementDocument = HydratedDocument<Equipement>;
 
 @Schema({timestamps:true})
 export class Equipement {
-    @Prop({type:String,required:true})
+    @Prop({type:String,unique:true,required:true})
     nom:string;
 
     @Prop({type:String})
