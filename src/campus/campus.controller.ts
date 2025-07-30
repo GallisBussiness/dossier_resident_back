@@ -12,9 +12,9 @@ export class CampusController {
     return this.campusService.create(createCampusDto);
   }
 
-  @Get()
-  findAll() {
-    return this.campusService.findAll();
+  @Get('annee-universitaire/:anneeUniversitaireId')
+  findAll(@Param('anneeUniversitaireId') anneeUniversitaireId: string) {
+    return this.campusService.findAll(anneeUniversitaireId);
   }
 
   @Get(':id')

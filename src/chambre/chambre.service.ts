@@ -28,9 +28,9 @@ export class ChambreService {
     }
   }
 
-  findAll() {
+  findAllByAnneeUniversitaire(anneeUniversitaireId:string) {
     try {
-      return this.chambreModel.find().exec();
+      return this.chambreModel.find({anneeUniversitaireId}).exec();
     } catch (error) {
       throw new HttpException('error getting chambres', 500);
     }

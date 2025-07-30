@@ -19,9 +19,9 @@ export class PavillonService {
     }
   }
 
-  findAll() {
+  findAllByAnneeUniversitaire(anneeUniversitaireId:string) {
     try {
-      return this.pavillonModel.find().exec();
+      return this.pavillonModel.find({anneeUniversitaireId}).exec();
     } catch (error) {
       throw new HttpException('error getting pavillons', 500);
     }

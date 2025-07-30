@@ -21,6 +21,13 @@ export class AnneeUniversitaireController {
     return this.anneeUniversitaireService.create(createAnneeUniversitaireDto);
   }
 
+  @Post('import')
+  @CheckAbility({ action: Action.Create, subject: AnneeUniversitaire })
+  @UseGuards(AuthGuard('jwt'), CaslGuard)
+  import(@Body() importDto: {anneeFrom:string,anneeTo:string}) {
+    return this.anneeUniversitaireService.import(importDto);
+  }
+
   @Get()
   @CheckAbility({ action: Action.Read, subject: AnneeUniversitaire })
   @UseGuards(AuthGuard('jwt'), CaslGuard)

@@ -3,7 +3,7 @@ import { CreateCampusDto } from './dto/create-campus.dto';
 import { UpdateCampusDto } from './dto/update-campus.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Campus, CampusDocument } from './entities/campus.entity';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 @Injectable()
 export class CampusService {
@@ -19,17 +19,22 @@ export class CampusService {
     }
   }
 
-  findAll():Promise<CampusDocument[]> {
+  findAll(anneeUniversitaireId:string):Promise<CampusDocument[]> {
       try {
-      return this.campusModel.find();
+      return this.campusModel.find({anneeUniversitaireId});
     } catch (error) {
       throw new HttpException('error getting campuses', 500);
     }
   }
 
-  findWithPavillonsWithChambres():Promise<any[]> {
+  findWithPavillonsWithChambres(anneeUniversitaireId:string):Promise<any[]> {
     try {
       return this.campusModel.aggregate([
+        {
+          $match:{
+            anneeUniversitaireId: new Types.ObjectId(anneeUniversitaireId)
+          }
+        },
         {
           $lookup:{
             from:'pavillons',

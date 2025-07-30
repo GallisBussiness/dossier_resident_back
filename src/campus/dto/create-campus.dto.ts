@@ -1,4 +1,4 @@
-import { IsLatitude, IsLongitude, IsOptional, IsString } from "class-validator";
+import { IsLatitude, IsLongitude, IsMongoId, IsOptional, IsString } from "class-validator";
 
 export class CreateCampusDto {
     @IsString()
@@ -17,4 +17,7 @@ export class CreateCampusDto {
     @IsString()
     @IsLongitude()
     longitude?:string;
+
+    @IsMongoId()
+    anneeUniversitaireId:string;
 }

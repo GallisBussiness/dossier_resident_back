@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { HydratedDocument,Schema as MongooseSchema } from "mongoose";
+import { AnneeUniversitaire } from "src/annee_universitaire/entities/annee_universitaire.entity";
 
 export type CampusDocument = HydratedDocument<Campus>;
 
@@ -16,6 +17,9 @@ export class Campus {
 
     @Prop({type:String})
     longitude:string;
+
+    @Prop({type: MongooseSchema.Types.ObjectId,ref:AnneeUniversitaire.name,required:true})
+    anneeUniversitaireId:string;
 }
 
 export const CampusSchema = SchemaFactory.createForClass(Campus);

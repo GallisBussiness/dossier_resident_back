@@ -12,14 +12,14 @@ export class ChambreController {
     return this.chambreService.create(createChambreDto);
   }
 
-  @Get()
-  findAll() {
-    return this.chambreService.findAll();
-  }
-
   @Get('byPavillon/:id')
   findAllByPavillon(@Param('id') id: string) {
     return this.chambreService.findAllByPavillon(id);
+  }
+
+  @Get('annee-universitaire/:anneeUniversitaireId')
+  findAllByAnneeUniversitaire(@Param('anneeUniversitaireId') anneeUniversitaireId: string) {
+    return this.chambreService.findAllByAnneeUniversitaire(anneeUniversitaireId);
   }
 
   @Get(':id')

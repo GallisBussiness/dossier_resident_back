@@ -9,4 +9,7 @@ export class CreateChambreDto {
 
     @IsNumber()
     places:number;
+
+    @IsMongoId()
+    anneeUniversitaireId:string;
 }

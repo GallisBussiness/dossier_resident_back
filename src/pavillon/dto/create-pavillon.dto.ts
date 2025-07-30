@@ -10,4 +10,7 @@ export class CreatePavillonDto {
    @IsOptional()
    @IsString()
    description?:string;
+
+   @IsMongoId()
+   anneeUniversitaireId:string;
 }

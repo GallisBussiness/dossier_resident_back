@@ -12,14 +12,14 @@ export class PavillonController {
     return this.pavillonService.create(createPavillonDto);
   }
 
-  @Get()
-  findAll() {
-    return this.pavillonService.findAll();
-  }
-
   @Get('byCampus/:id')
   findAllByCampus(@Param('id') id: string) {
     return this.pavillonService.findAllByCampus(id);
+  }
+
+  @Get('annee-universitaire/:anneeUniversitaireId')
+  findAllByAnneeUniversitaire(@Param('anneeUniversitaireId') anneeUniversitaireId: string) {
+    return this.pavillonService.findAllByAnneeUniversitaire(anneeUniversitaireId);
   }
 
   @Get(':id')
