@@ -52,8 +52,6 @@ FROM base AS final
 # Use production node environment by default.
 ENV NODE_ENV=production
 ENV NEST_PORT=3000
-ENV MONGODB_URL_RESIDENT=mongodb+srv://gallis:gallis123@cluster0.5lrik.mongodb.net/resident
-ENV MONGODB_URL_ETUDIANT=mongodb+srv://gallis:gallis123@cluster0.5lrik.mongodb.net/etudiant
 ENV JWT_SECRET=resident123456
 
 # Run the application as a non-root user.
