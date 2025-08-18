@@ -2,7 +2,6 @@ import { RequestMethod, MiddlewareConsumer, Module, NestModule } from '@nestjs/c
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DossierModule } from './dossier/dossier.module';
-import { CodificationModule } from './codification/codification.module';
 import { PayementModule } from './payement/payement.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
@@ -18,6 +17,8 @@ import { AuthMiddleware } from './auth/auth.middleware';
 import { JwtModule } from '@nestjs/jwt';
 import { AllocationModule } from './allocation/allocation.module';
 import { EquipementModule } from './equipement/equipement.module';
+import { AnneeParametreModule } from './annee_parametre/annee_parametre.module';
+import { SessionEtudiantModule } from './session-etudiant/session-etudiant.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -49,7 +50,6 @@ import { EquipementModule } from './equipement/equipement.module';
     EtudiantModule,
     InscriptionModule,
     DossierModule,
-    CodificationModule,
     PayementModule,
     AnneeUniversitaireModule,
     CampusModule,
@@ -57,6 +57,8 @@ import { EquipementModule } from './equipement/equipement.module';
     ChambreModule,
     AllocationModule,
     EquipementModule,
+    AnneeParametreModule,
+    SessionEtudiantModule
   ],
   controllers: [AppController],
   providers: [AppService],
