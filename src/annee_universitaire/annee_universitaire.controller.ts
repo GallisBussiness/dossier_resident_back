@@ -6,7 +6,6 @@ import { CheckAbility } from 'src/casl/policy.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { CaslGuard } from 'src/casl/casl.guard';
 import { Action } from 'src/casl/casl-ability.factory';
-import { User } from 'src/user/entities/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { AnneeUniversitaire } from './entities/annee_universitaire.entity';
 
@@ -33,6 +32,13 @@ export class AnneeUniversitaireController {
   @UseGuards(AuthGuard('jwt'), CaslGuard)
   findAll() {
     return this.anneeUniversitaireService.findAll();
+  }
+
+  @Get('results/:id')
+  @CheckAbility({ action: Action.Read, subject: AnneeUniversitaire })
+  @UseGuards(AuthGuard('jwt'), CaslGuard)
+  findResults(@Param('id') id: string) {
+    return this.anneeUniversitaireService.findResults(id);
   }
 
   @Get('active')

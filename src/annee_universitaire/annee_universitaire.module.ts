@@ -9,6 +9,10 @@ import { PavillonModule } from 'src/pavillon/pavillon.module';
 import { ChambreModule } from 'src/chambre/chambre.module';
 import { DossierModule } from 'src/dossier/dossier.module';
 import { EtudiantModule } from 'src/etudiant/etudiant.module';
+import { AnneeParametreModule } from 'src/annee_parametre/annee_parametre.module';
+import { InscriptionModule } from 'src/inscription/inscription.module';
+import { DepartementModule } from 'src/departement/departement.module';
+import { FormationModule } from 'src/formation/formation.module';
 @Module({
   controllers: [AnneeUniversitaireController],
   providers: [AnneeUniversitaireService],
@@ -18,6 +22,10 @@ import { EtudiantModule } from 'src/etudiant/etudiant.module';
   ChambreModule,
   DossierModule,
   EtudiantModule,
+  AnneeParametreModule,
+  InscriptionModule,
+  DepartementModule,
+  FormationModule
 ],
   exports: [AnneeUniversitaireService]
 })

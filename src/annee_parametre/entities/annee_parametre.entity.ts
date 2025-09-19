@@ -18,7 +18,7 @@ export class AnneeParametre {
   pedagogique:number;
 
   @Prop({type:Number,default:0})
-  sociale:number;
+  social:number;
 
   @Prop({type:Number,default:0})
   licence1:number;

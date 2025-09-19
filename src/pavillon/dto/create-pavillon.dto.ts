@@ -1,4 +1,9 @@
-import { IsMongoId, IsOptional, IsString } from "class-validator";
+import { IsEnum, IsMongoId, IsOptional, IsString } from "class-validator";
+
+export enum TypePavillon {
+    HOMME,
+    FEMME
+}
 
 export class CreatePavillonDto {
     @IsString()
@@ -6,6 +11,9 @@ export class CreatePavillonDto {
 
    @IsMongoId()
    campusId:string;
+
+   @IsEnum(TypePavillon)
+   type:TypePavillon;
 
    @IsOptional()
    @IsString()

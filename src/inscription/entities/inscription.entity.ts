@@ -5,9 +5,9 @@ export type InscriptionDocument = Inscription & Document;
 
 export class Inscription {
     _id: string;
-    etudiant: object;
+    etudiant: {_id:string,genre:string};
     session:string;
-    formation:object;
+    formation: {_id: string,departement: string};
     active:boolean;
 }
 

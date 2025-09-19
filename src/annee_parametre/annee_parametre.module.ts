@@ -8,5 +8,6 @@ import { AnneeParametre, AnneeParametreSchema } from './entities/annee_parametre
   imports: [MongooseModule.forFeature([{ name: AnneeParametre.name, schema: AnneeParametreSchema }], 'resident')],
   controllers: [AnneeParametreController],
   providers: [AnneeParametreService],
+  exports: [AnneeParametreService]
 })
 export class AnneeParametreModule {}
